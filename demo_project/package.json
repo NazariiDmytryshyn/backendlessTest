@@ -1,0 +1,15 @@
+{
+  "name": "demo_project",
+  "version": "6.6.5",
+  "description": "For testing auto",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nazarko Dmytryshyn",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^11.0.1",
+    "cypress-mailosaur": "^2.13.0"
+  }
+}

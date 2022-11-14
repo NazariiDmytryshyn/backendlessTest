@@ -1,11 +1,15 @@
 const { defineConfig } = require('cypress')
 
+
 module.exports = defineConfig({
     env: {
         MAILOSAUR_API_KEY: "SJxy0MooCaN30RL1",
+        googleRefreshToken: process.env.GOOGLE_REFRESH_TOKEN,
+        googleClientId: process.env.REACT_APP_GOOGLE_CLIENTID,
+        googleClientSecret: process.env.REACT_APP_GOOGLE_CLIENT_SECRET,
     },
     e2e: {
-        baseUrl: 'https://stage.backendless.com',
+        baseUrl: 'https://develop.backendless.com',
         chromeWebSecurity: false
     }
 })

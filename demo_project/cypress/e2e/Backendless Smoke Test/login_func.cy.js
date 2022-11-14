@@ -2,7 +2,7 @@
 //     "baseUrl": "https://eu-develop.backendless.com/login"
 // }
 /// <reference types="cypress" />
-const EMAIL_PROD = 'cypress@gmail.com';
+const EMAIL_PROD = 'nazar.dmytryshyn@backendlessmail.com';
 const PASSWORD_PROD = '111111';
 const NON_EXISTENT_EMAIL = 'nonExistentEmail@gmail.com'
 const INVALID_PASSWORD = 'qweqweqweqweqweqw9812347981278391'
@@ -28,7 +28,7 @@ describe('Login into Backendless', () => {
             .should('exist')
             .click();
 
-        cy.wait(13000);
+        cy.wait(7000);
 
         cy.contains('button', 'Continue')
             .should('exist')
@@ -48,7 +48,7 @@ describe('Login into Backendless', () => {
         cy.url()
             .should('include', '/manage');
 
-        cy.get('img[src="/static/media/avatar.c6c6de78.svg"]')
+        cy.get('.avatar-menu > img')
             .should('exist')
             .click();
 
@@ -102,21 +102,21 @@ describe('Login into Backendless', () => {
         cy.contains('div', "Invalid developer's login or password")
             .should('exist');
     });
-    // it('Login via GOOGLE', () => {
-    //     cy.contains('span', 'Sign in')
-    //         .should('exist');
+    it('Login via GOOGLE', () => {
+        cy.contains('span', 'Sign in')
+            .should('exist');
 
-    //     cy.request({
-    //         method: 'POST',
-    //         url: 'https://www.googleapis.com/oauth2/v4/token',
-    //         body: {
-    //             grant_type: 'refresh_token',
-    //             client_id: Cypress.env('googleClientId'),
-    //             client_secret: Cypress.env('googleClientSecret'),
-    //             refresh_token: Cypress.env('googleRefreshToken'),
-    //         },
-    //     }).then(({ body }) => {
-    //         const { id_token } = body
-    //     })
-    // })
+        cy.request({
+            method: 'POST',
+            url: 'https://www.googleapis.com/oauth2/v4/token',
+            body: {
+                grant_type: 'refresh_token',
+                client_id: Cypress.env('googleClientId'),
+                client_secret: Cypress.env('googleClientSecret'),
+                refresh_token: Cypress.env('googleRefreshToken'),
+            },
+        }).then(({ body }) => {
+            const { id_token } = body
+        })
+    })
 });

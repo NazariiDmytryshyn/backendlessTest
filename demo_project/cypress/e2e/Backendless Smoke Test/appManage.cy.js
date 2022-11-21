@@ -4,22 +4,24 @@ const PASSWORD_PROD = '111111'
 
 describe('App Manage', () => {
     before(() => {
-        cy.visit('/');
-        cy.get('input[type="email"]').type(EMAIL_PROD)
-            .should('exist');
+        cy.clearCookies();
+        cy.clearLocalStorage();
+        // cy.visit('/');
+        // cy.get('input[type="email"]').type(EMAIL_PROD)
+        //     .should('exist');
 
-        cy.get('input[type="password"]').type(PASSWORD_PROD)
-            .should('exist');
+        // cy.get('input[type="password"]').type(PASSWORD_PROD)
+        //     .should('exist');
 
-        cy.contains('button', 'LOGIN')
-            .should('exist')
-            .click();
+        // cy.contains('button', 'LOGIN')
+        //     .should('exist')
+        //     .click();
     });
     beforeEach(() => {
         cy.visit('/');
-        cy.Cookies.preserveOnce('dev-auth-key', 'JSESSIONID', 'dev-last-used-app-id')
+        // cy.Cookies.preserveOnce('dev-auth-key', 'JSESSIONID', 'dev-last-used-app-id')
     });
-    it.skip('Create App', () => {
+    it('Create App', () => {
         const randomNumber = Math.random().toString().slice(2);
         const AppName = `CypressApp${randomNumber}`
 
@@ -97,8 +99,33 @@ describe('App Manage', () => {
 
         cy.contains('button[class="apps-select dropdown-toggle btn btn-primary"]', 'NewApp')
             .should('exist')
+
+        cy.get('#apps-select')
+            .should('exist')
+            .click()
+
+        cy.contains('.apps-menu-list > .active > a', 'NewApp')
+            .should('exist')
+            .click()
+
+        cy.get('.delete-app > .btn')
+            .should('exist')
+            .click()
+
+        cy.get('.modal-body > .form-control')
+            .should('exist')
+            .type('DELETE NewApp')
+
+        cy.wait(400);
+        cy.contains('button[class="btn btn-danger"]', 'Delete')
+            .should('exist')
+            .click()
+            // cy.wait(4000);
+            // cy.get('.alert-content', 'Application has deleted successfully')
+            //     .should('exist')
+
     });
-    it.skip('Create APP with existent name', () => {
+    it('Create APP with existent name', () => {
         cy.contains('span', 'Sign in')
             .should('exist');
 
@@ -180,7 +207,7 @@ describe('App Manage', () => {
         cy.get('.app-name-option > .form-control')
             .clear()
     });
-    it.skip('Clone App', () => {
+    it('Clone App', () => {
         cy.contains('span', 'Sign in')
             .should('exist');
 
@@ -298,23 +325,27 @@ describe('App Manage', () => {
         cy.contains('p', 'Removing the application is an irreversible operation, all data will be deleted with the application')
             .should('exist');
 
-        cy.contains('button', 'Delete')
+        cy.get('.delete-app > .btn > span')
             .should('exist')
             .click();
 
         cy.contains('div', 'Delete App Confirmation')
             .should('exist');
 
-        cy.contains('div', 'Type in the word DELETE CloneCypressApp1 below to confirm action:')
+        cy.contains('.text-sm', 'Type in the word DELETE CloneCypressApp1 below to confirm action:')
             .should('exist');
 
         cy.get('.modal-body > .form-control')
             .should('exist')
             .type('DELETE CloneCypressApp1')
-
-        cy.contains('button', 'Delete')
+        cy.wait(400);
+        cy.contains('button[class="btn btn-danger"]', 'Delete')
             .should('exist')
             .click()
+
+        cy.wait(2500);
+        cy.get('.alert-content', 'Application has deleted successfully')
+            .should('exist')
 
         cy.clearCookies();
         cy.clearLocalStorage();

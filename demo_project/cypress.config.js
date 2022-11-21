@@ -9,7 +9,7 @@ module.exports = defineConfig({
         googleClientSecret: process.env.REACT_APP_GOOGLE_CLIENT_SECRET,
     },
     e2e: {
-        baseUrl: 'https://develop.backendless.com',
+        baseUrl: 'https://stage.backendless.com',
         chromeWebSecurity: false
     }
 })

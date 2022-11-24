@@ -1,5 +1,6 @@
 /// <reference types="cypress" />
 
+const Volofya = 'Ragul'
 const validPassword = '111111';
 const randomNumber = Math.random().toString().slice(2);
 const serverId = 'm4mj2g0y';

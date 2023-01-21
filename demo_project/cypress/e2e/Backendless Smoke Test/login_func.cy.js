@@ -81,8 +81,7 @@ describe('Login into Backendless', () => {
             .should('exist')
             .click();
 
-        cy.contains('div', "Invalid developer's login or password")
-            .should('exist');
+        cy.contains('div', "Invalid developer's login or password").should('exist');
 
         cy.get('input[type="password"]').clear();
 

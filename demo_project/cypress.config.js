@@ -10,9 +10,15 @@ module.exports = defineConfig({
     },
     e2e: {
         baseUrl: 'https://stage.backendless.com',
-        chromeWebSecurity: false
+        chromeWebSecurity: false,
+        // specPattern: "**/cypress/integration/*.spec.js"
     }
 })
+
+
+
+
+
 
 
 

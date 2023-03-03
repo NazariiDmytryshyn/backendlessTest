@@ -1,15 +1,26 @@
 {
-  "name": "demo_project",
-  "version": "6.6.5",
-  "description": "For testing auto",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Nazarko Dmytryshyn",
-  "license": "ISC",
-  "devDependencies": {
-    "cypress": "^11.0.1",
-    "cypress-mailosaur": "^2.13.0"
-  }
+    "name": "demo_project",
+    "version": "6.6.5",
+    "description": "For testing auto",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "cy:run": "EMAIL_URL=smtp://user:pass@localhost:1025 cypress run",
+        "dev": "nodemon /cypress/db/connection.js"
+    },
+    "author": "Nazarko Dmytryshyn",
+    "license": "ISC",
+    "devDependencies": {
+        "cypress": "^11.0.1",
+        "cypress-mailosaur": "^2.13.0",
+        "cypress-sql-server": "^1.0.0"
+    },
+    "dependencies": {
+        "@faker-js/faker": "^7.6.0",
+        "dotenv": "^16.0.3",
+        "mssql": "^9.1.1",
+        "mysql": "github:mysqljs/mysql",
+        "mysql2": "^3.0.1",
+        "ngrok": "^4.3.3"
+    }
 }
